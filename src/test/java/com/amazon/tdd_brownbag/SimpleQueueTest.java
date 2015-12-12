@@ -38,8 +38,8 @@ public class SimpleQueueTest {
 
     @Test
     public void simple_queue_is_fifo_for_2_el() throws Exception {
-        queue.enqueue(1);
-        queue.enqueue(2);
+        queue.enqueue(1)
+            .enqueue(2);
 
         List<Integer> result = new ArrayList<>(2);
         result.add(queue.dequeue());

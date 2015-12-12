@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 public class SimpleQueue<T> {
     private SimpleQueueNode<T> first, last;
 
-    public void enqueue(T t) {
+    public SimpleQueue<T> enqueue(T t) {
         SimpleQueueNode<T> newNode = new SimpleQueueNode<>(t);
         if (last != null) {
             last.next = newNode;
@@ -13,6 +13,7 @@ public class SimpleQueue<T> {
             first = newNode;
         }
         last = newNode;
+        return this;
     }
 
     public T dequeue() {
