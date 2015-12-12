@@ -3,6 +3,8 @@ package com.amazon.tdd_brownbag;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import static com.googlecode.catchexception.CatchException.catchException;
@@ -32,5 +34,17 @@ public class SimpleQueueTest {
         queue.enqueue(element);
 
         assertThat(queue.dequeue()).isEqualTo(element);
+    }
+
+    @Test
+    public void simple_queue_is_fifo_for_2_el() throws Exception {
+        queue.enqueue(1);
+        queue.enqueue(2);
+
+        List<Integer> result = new ArrayList<>(2);
+        result.add(queue.dequeue());
+        result.add(queue.dequeue());
+
+        assertThat(result).containsExactly(1, 2);
     }
 }
