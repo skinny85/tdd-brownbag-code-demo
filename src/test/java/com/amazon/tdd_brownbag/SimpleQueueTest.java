@@ -6,6 +6,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static com.googlecode.catchexception.CatchException.catchException;
 import static com.googlecode.catchexception.CatchException.caughtException;
@@ -41,9 +43,7 @@ public class SimpleQueueTest {
         queue.enqueue(1)
             .enqueue(2);
 
-        List<Integer> result = new ArrayList<>(2);
-        result.add(queue.dequeue());
-        result.add(queue.dequeue());
+        List<Integer> result = queueToList(2);
 
         assertThat(result).containsExactly(1, 2);
     }
@@ -56,10 +56,14 @@ public class SimpleQueueTest {
         queue.enqueue(1)
                 .enqueue(2);
 
-        List<Integer> result = new ArrayList<>(2);
-        result.add(queue.dequeue());
-        result.add(queue.dequeue());
+        List<Integer> result = queueToList(2);
 
         assertThat(result).containsExactly(1, 2);
+    }
+
+    private List<Integer> queueToList(int size) {
+        return IntStream.range(0, size)
+                .mapToObj(i -> queue.dequeue())
+                .collect(Collectors.toList());
     }
 }
