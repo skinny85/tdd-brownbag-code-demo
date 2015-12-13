@@ -6,9 +6,7 @@ public class SimpleQueue<T> {
     private SimpleQueueNode<T> first;
 
     public void enqueue(T t) {
-        SimpleQueueNode<T> newNode = new SimpleQueueNode<>();
-        newNode.value = t;
-        first = newNode;
+        first = new SimpleQueueNode<>(t);
     }
 
     public T dequeue() {
@@ -18,6 +16,10 @@ public class SimpleQueue<T> {
     }
 
     private static final class SimpleQueueNode<E> {
-        E value;
+        final E value;
+
+        public SimpleQueueNode(E value) {
+            this.value = value;
+        }
     }
 }
