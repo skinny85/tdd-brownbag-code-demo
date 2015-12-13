@@ -47,4 +47,19 @@ public class SimpleQueueTest {
 
         assertThat(result).containsExactly(1, 2);
     }
+
+    @Test
+    public void queue_drains_elements_correctly() throws Exception {
+        queue.enqueue(1);
+        queue.dequeue();
+
+        queue.enqueue(1)
+                .enqueue(2);
+
+        List<Integer> result = new ArrayList<>(2);
+        result.add(queue.dequeue());
+        result.add(queue.dequeue());
+
+        assertThat(result).containsExactly(1, 2);
+    }
 }
