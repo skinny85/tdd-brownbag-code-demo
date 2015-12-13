@@ -7,7 +7,7 @@ public class SimpleQueue<T> {
 
     public SimpleQueue<T> enqueue(T t) {
         SimpleQueueNode<T> newNode = new SimpleQueueNode<>(t);
-        if (last != null) {
+        if (first != null) {
             last.next = newNode;
         } else {
             first = newNode;
